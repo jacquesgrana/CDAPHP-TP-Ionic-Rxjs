@@ -12,6 +12,7 @@
     margin-right: auto;
     width: 100%;
     border-collapse: collapse;
+    text-align: left;
 }
 
 .checked {
