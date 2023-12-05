@@ -1,0 +1,7 @@
+{
+  "name": "Tp_Ionic_Rxjs",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react-vite"
+}
