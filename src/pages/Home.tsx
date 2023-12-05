@@ -38,7 +38,7 @@ const Home: React.FC = () => {
       });
       setTasks(data);
     });
-    return () => subscription.unsubscribe(); // clean up on component unmount
+    return () => subscription.unsubscribe();
   }, []);
 
   useEffect(() => {
