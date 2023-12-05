@@ -159,20 +159,21 @@ const handleAddTask = () => {
         <div className="div-tasks">
           <IonGrid className="table-tasks">
             <IonRow>
-              <IonCol>ID</IonCol>
-              <IonCol>Titre</IonCol>
-              <IonCol>Actions</IonCol>
+              <IonCol size="2"><strong className="text-warning">Id</strong></IonCol>
+              <IonCol size="6"><strong className="text-warning">Titre</strong></IonCol>
+              <IonCol size="4"><strong className="text-warning">Actions</strong></IonCol>
             </IonRow>
             {tasks.map((task) => (
               <IonRow key={task.id}>
-                <IonCol>{task.id}</IonCol>
+                <IonCol size="2">{task.id}</IonCol>
                 <IonCol
+                  size="6"
                   className={task.completed ? "checked" : ""}
                   onDoubleClick={() => toggleCompletion(task.id)}
                 >
                   {task.title}
                 </IonCol>
-                <IonCol>
+                <IonCol size="4">
                   <IonButton
                     color={task.completed ? "warning" : "success"}
                     onClick={() => toggleCompletion(task.id)}
