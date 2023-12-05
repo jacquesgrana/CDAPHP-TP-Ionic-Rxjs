@@ -21,3 +21,11 @@
 .text-center {
     text-align: center;
 }
+
+.form-new-task {
+    display: flex;
+    width: 80%;
+    gap: 10px;
+    margin: 0 auto;
+    margin-top: 40px;
+}

@@ -123,12 +123,11 @@ function handleAddTask () {
             <IonTitle size="large">Gestion des tâches</IonTitle>
           </IonToolbar>
         </IonHeader>
-
-        <IonItem>
-          <IonLabel>Nouvelle tâche:</IonLabel>
+        <IonItem className='form-new-task'>
+          <IonLabel >Nouvelle tâche :</IonLabel>
           <IonInput value={newTask} onIonChange={(event) => setNewTask(event.detail.value!)} />
+        <IonButton color='primary' onClick={handleAddTask}>Ajouter</IonButton>
         </IonItem>
-        <IonButton onClick={handleAddTask}>Ajouter</IonButton>
         <div className='div-tasks'>
         <table className='table-tasks'>
           <thead>
@@ -144,7 +143,7 @@ function handleAddTask () {
                 <td>{task.id}</td>
                 <td className={task.completed ? 'checked' : ''} onDoubleClick={() => toggleCompletion(task.id)}>{task.title}</td>
                 <td>
-                <IonButton color="primary" onClick={() => toggleCompletion(task.id)}>
+                <IonButton color="success" onClick={() => toggleCompletion(task.id)}>
                     {task.completed ? 'Invalider' : 'Valider'}
                   </IonButton>
 
