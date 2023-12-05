@@ -1,0 +1,29 @@
+{
+  "tasks": [
+    {
+      "id": 1,
+      "title": "Ranger les chats",
+      "completed": false
+    },
+    {
+      "id": 2,
+      "title": "Brosser les chats",
+      "completed": true
+    },
+    {
+      "id": 3,
+      "title": "Nourrir les chats",
+      "completed": false
+    },
+    {
+      "id": 4,
+      "title": "Dresser les chats",
+      "completed": false
+    },
+    {
+      "title": "Calmer les chats",
+      "completed": true,
+      "id": 5
+    }
+  ]
+}

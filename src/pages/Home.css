@@ -1,0 +1,23 @@
+.div-tasks {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 80%;
+    margin: 0 auto;
+    margin-top: 40px;
+}
+
+.table-tasks {
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.checked {
+    text-decoration: line-through;
+}
+
+.text-center {
+    text-align: center;
+}
