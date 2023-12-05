@@ -3,7 +3,7 @@
 - Jacques Granarolo
 - Décembre 2023
 
-### Installation
+## Installation
 
 ```bash
 npm i
