@@ -1,4 +1,4 @@
-.div-tasks {
+.card-tasks {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -7,13 +7,13 @@
     margin-right: auto;
     margin-bottom: 40px;
     margin-top: 40px;
+    font-size: larger;
 }
 
 .table-tasks {
     margin-left: auto;
     margin-right: auto;
     width: 100%;
-    border-collapse: collapse;
     text-align: left;
     border : 1px solid rgb(70, 70, 70);
     border-radius: 10px;
@@ -71,9 +71,13 @@
 .actions-col-head {
     display: flex;
     justify-content: end;
-    margin-right: 180px;
+    margin-right: 170px;
 }
 
 .title-margin {
     margin-top: 40px;
+}
+
+.font-bold {
+    font-weight: bold;
 }

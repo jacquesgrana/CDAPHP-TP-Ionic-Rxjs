@@ -11,7 +11,8 @@ import {
   IonGrid,
   IonRow,
   IonCol,
-  IonCard
+  IonCard,
+  IonText
 } from "@ionic/react";
 //import ExploreContainer from '../components/ExploreContainer';
 import "./Home.css";
@@ -126,11 +127,6 @@ const Home: React.FC = () => {
         </IonToolbar>
       </IonHeader>
       <IonContent fullscreen>
-        <IonHeader collapse="condense">
-          <IonToolbar>
-            <IonTitle size="large">Gestion des tâches</IonTitle>
-          </IonToolbar>
-        </IonHeader>
         <IonTitle size="large" className="text-center title-margin">Ajouter une tâche</IonTitle>
         <IonItem className="form-new-task">
           <IonLabel>Nouvelle tâche :</IonLabel>
@@ -143,16 +139,16 @@ const Home: React.FC = () => {
           </IonButton>
         </IonItem>
         <IonTitle size="large" className="text-center title-margin">Liste des tâches</IonTitle>
-        <IonCard className="div-tasks">
+        <IonCard className="card-tasks">
           <IonGrid className="table-tasks">
             <IonRow className="rows-tasks">
-              <IonCol size="1"><strong className="text-grey">Id</strong></IonCol>
-              <IonCol size="5"><strong className="text-grey">Titre</strong></IonCol>
-              <IonCol className="actions-col-head"><strong className="text-grey">Actions</strong></IonCol>
+              <IonCol size="1"><IonText className="font-bold text-grey">Id</IonText></IonCol>
+              <IonCol size="5"><IonText className="font-bold text-grey">Titre</IonText></IonCol>
+              <IonCol className="actions-col-head"><IonText className="font-bold text-grey">Actions</IonText></IonCol>
             </IonRow>
             {tasks.map((task) => (
               <IonRow className="rows-tasks" key={task.id}>
-                <IonCol size="1"><strong  className={task.completed ? "text-blue" : "text-orange"}>{task.id}</strong></IonCol>
+                <IonCol size="1"><IonText  className={task.completed ? "font-bold text-blue" : "font-bold text-orange"}>{task.id}</IonText></IonCol>
                 <IonCol
                   size="5"
                   className={task.completed ? "checked" : ""}
