@@ -47,7 +47,6 @@ const Home: React.FC = () => {
     ) as HTMLIonButtonElement;
     const click$ = fromEvent(addButton, "click");
     const doubleClick$ = click$.pipe(bufferCount(2));
-
     const subscription = doubleClick$.subscribe(() => {
       handleAddTask();
     });
@@ -137,9 +136,9 @@ const Home: React.FC = () => {
         <div className="div-tasks">
           <IonGrid className="table-tasks">
             <IonRow className="rows-tasks">
-              <IonCol size="2"><strong className="text-orange">Id</strong></IonCol>
-              <IonCol size="5"><strong className="text-orange">Titre</strong></IonCol>
-              <IonCol size="5"><strong className="text-orange">Actions</strong></IonCol>
+              <IonCol size="2"><strong className="text-grey">Id</strong></IonCol>
+              <IonCol size="5"><strong className="text-grey">Titre</strong></IonCol>
+              <IonCol size="5"><strong className="text-grey">Actions</strong></IonCol>
             </IonRow>
             {tasks.map((task) => (
               <IonRow className="rows-tasks" key={task.id}>

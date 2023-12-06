@@ -29,6 +29,11 @@
       "title": "Laver les chats",
       "completed": false,
       "id": 6
+    },
+    {
+      "title": "Sécher les chats",
+      "completed": true,
+      "id": 7
     }
   ]
 }

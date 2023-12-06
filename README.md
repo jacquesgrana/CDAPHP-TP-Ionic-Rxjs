@@ -3,9 +3,10 @@
 - Jacques Granarolo
 - Décembre 2023
 
-## Installation
+## Installation / Lancement
 
 ```bash
 npm i
+npm run server
 ionic serve
 ```

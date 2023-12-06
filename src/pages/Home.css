@@ -51,6 +51,10 @@
     color: yellow;
 }
 
+.text-grey {
+    color: grey;
+}
+
 .btn-action {
     width : 120px;
     height: 30px;
