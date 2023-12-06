@@ -84,20 +84,22 @@ const Home: React.FC = () => {
   };
 
   const deleteTaskById = (taskId: number) => {
-    const delete$ = deleteTask(taskId);
-    delete$.subscribe(() => {
-      setTasks(
-        tasks
-          .filter((task) => task.id !== taskId)
-          .sort((a: ITask, b: ITask) => {
-            if (a.completed === b.completed) {
-              return a.id - b.id;
-            }
-            return Number(a.completed) - Number(b.completed);
-          })
-      );
-    });
-  };
+    if (window.confirm('Êtes-vous sûr de vouloir supprimer cette tâche ?')) {
+      const delete$ = deleteTask(taskId);
+      delete$.subscribe(() => {
+        setTasks(
+          tasks
+            .filter((task) => task.id !== taskId)
+            .sort((a: ITask, b: ITask) => {
+              if (a.completed === b.completed) {
+                return a.id - b.id;
+              }
+              return Number(a.completed) - Number(b.completed);
+            })
+        );
+      });
+    }
+   };   
 
   /*
 
@@ -158,29 +160,29 @@ const handleAddTask = () => {
         </IonItem>
         <div className="div-tasks">
           <IonGrid className="table-tasks">
-            <IonRow>
-              <IonCol size="2"><strong className="text-warning">Id</strong></IonCol>
-              <IonCol size="6"><strong className="text-warning">Titre</strong></IonCol>
-              <IonCol size="4"><strong className="text-warning">Actions</strong></IonCol>
+            <IonRow className="rows-tasks">
+              <IonCol size="2"><strong className="text-orange">Id</strong></IonCol>
+              <IonCol size="5"><strong className="text-orange">Titre</strong></IonCol>
+              <IonCol size="5"><strong className="text-orange">Actions</strong></IonCol>
             </IonRow>
             {tasks.map((task) => (
-              <IonRow key={task.id}>
-                <IonCol size="2">{task.id}</IonCol>
+              <IonRow className="rows-tasks" key={task.id}>
+                <IonCol size="2"><strong  className={task.completed ? "text-yellow" : "text-blue"}>{task.id}</strong></IonCol>
                 <IonCol
-                  size="6"
+                  size="5"
                   className={task.completed ? "checked" : ""}
                   onDoubleClick={() => toggleCompletion(task.id)}
                 >
                   {task.title}
                 </IonCol>
-                <IonCol size="4">
-                  <IonButton
+                <IonCol size="5">
+                  <IonButton className="btn-action"
                     color={task.completed ? "warning" : "success"}
                     onClick={() => toggleCompletion(task.id)}
                   >
                     {task.completed ? "Invalider" : "Valider"}
                   </IonButton>
-                  <IonButton
+                  <IonButton className="btn-action"
                     color="danger"
                     onClick={() => deleteTaskById(task.id)}
                   >

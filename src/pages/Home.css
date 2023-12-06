@@ -13,6 +13,14 @@
     width: 100%;
     border-collapse: collapse;
     text-align: left;
+    border : 1px solid rgb(70, 70, 70);
+    border-radius: 10px;
+}
+
+.rows-tasks {
+    align-items: center;
+    border-bottom: 1px solid rgb(70, 70, 70);
+    padding: 10px;
 }
 
 .checked {
@@ -31,6 +39,20 @@
     margin-top: 40px;
 }
 
-.text-warning {
-    color: orange;
+.text-orange {
+    color: rgb(235, 134, 2);
+}
+
+.text-blue {
+    color: rgb(128, 128, 207);
+}
+
+.text-yellow {
+    color: yellow;
+}
+
+.btn-action {
+    width : 120px;
+    height: 30px;
+    font-weight: bold;
 }
