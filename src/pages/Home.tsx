@@ -114,7 +114,8 @@ const Home: React.FC = () => {
     setNewTask(task.title);
     setNewCompleted(task.completed);
     setNewId(task.id);
-    //alert("modif");
+    const title = document.getElementById("form-title");
+    if(title) title.innerText = "Modifier une tâche";
   };
 
   function handleAddTask() {
@@ -150,14 +151,20 @@ const Home: React.FC = () => {
             return Number(a.completed) - Number(b.completed);
           });
           setTasks(newTasks);
-          setNewTask("");
-          setNewId(0);
-          setNewCompleted(true);
-          flagMode.current = "add";
+          reset();
         });
       }
     }
   }
+
+  const reset = () => {
+    setNewTask("");
+    setNewCompleted(true);
+    setNewId(0);
+    const title = document.getElementById("form-title");
+    if(title) title.innerText = "Ajouter une tâche";
+    flagMode.current = "add";
+  };
 
   return (
     <IonPage>
@@ -167,7 +174,7 @@ const Home: React.FC = () => {
         </IonToolbar>
       </IonHeader>
       <IonContent fullscreen>
-        <IonTitle size="large" className="text-center title-margin">
+        <IonTitle size="large" className="text-center title-margin" id="form-title">
           Ajouter une tâche
         </IonTitle>
         <IonItem className="form-new-task">
@@ -179,6 +186,7 @@ const Home: React.FC = () => {
           <IonButton color="primary" onClick={handleAddTask}>
             {flagMode.current === "add" ? "Ajouter" : "Modifier"}
           </IonButton>
+          <IonButton color="success" onClick={reset}>Raz</IonButton>
         </IonItem>
         <IonTitle size="large" className="text-center title-margin">
           Liste des tâches
