@@ -56,11 +56,11 @@ const Home: React.FC = () => {
     const click$ = fromEvent(addButton, "click");
     const doubleClick$ = click$.pipe(bufferCount(2));
     const subscription = doubleClick$.subscribe(() => {
-      handleAddTask();
+      handleClickFormTask();
     });
 
     return () => subscription.unsubscribe();
-  }, [handleAddTask]);
+  }, [handleClickFormTask]);
 
   const toggleCompletion = (taskId: number) => {
     const task = tasks.find((task) => task.id === taskId);
@@ -118,7 +118,7 @@ const Home: React.FC = () => {
     if(title) title.innerText = "Modifier une tâche";
   };
 
-  function handleAddTask() {
+  function handleClickFormTask() {
     if (newTask !== "") {
       if (flagMode.current === "add") {
         const task = { title: newTask, completed: false };
@@ -151,13 +151,13 @@ const Home: React.FC = () => {
             return Number(a.completed) - Number(b.completed);
           });
           setTasks(newTasks);
-          reset();
+          resetForm();
         });
       }
     }
   }
 
-  const reset = () => {
+  const resetForm = () => {
     setNewTask("");
     setNewCompleted(true);
     setNewId(0);
@@ -170,7 +170,7 @@ const Home: React.FC = () => {
     <IonPage>
       <IonHeader>
         <IonToolbar>
-          <IonTitle className="text-center">Gestion des tâches</IonTitle>
+          <IonTitle size="large" className="text-center large-title">Gestion des tâches</IonTitle>
         </IonToolbar>
       </IonHeader>
       <IonContent fullscreen>
@@ -183,10 +183,10 @@ const Home: React.FC = () => {
             value={newTask}
             onIonChange={(event) => setNewTask(event.detail.value!)}
           />
-          <IonButton color="primary" onClick={handleAddTask}>
+          <IonButton color="primary" onClick={handleClickFormTask}>
             {flagMode.current === "add" ? "Ajouter" : "Modifier"}
           </IonButton>
-          <IonButton color="success" onClick={reset}>Raz</IonButton>
+          <IonButton color="success" onClick={resetForm}>Raz</IonButton>
         </IonItem>
         <IonTitle size="large" className="text-center title-margin">
           Liste des tâches
