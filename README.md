@@ -7,8 +7,20 @@ Gestion de tâches en Ionic (Typescript) avec un serveur json-server en utilisan
 
 ## Installation / Lancement
 
+### installation
+  
 ```bash
 npm i
+```
+
+### lancement du serveur json-server
+  
+```bash
 npm run server
+```
+
+### lancement de l'application
+  
+```bash
 ionic serve
 ```

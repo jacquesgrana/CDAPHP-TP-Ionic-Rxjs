@@ -3,12 +3,12 @@
     {
       "id": 1,
       "title": "Ranger les chats",
-      "completed": true
+      "completed": false
     },
     {
       "id": 2,
       "title": "Brosser les chats",
-      "completed": true
+      "completed": false
     },
     {
       "id": 3,
@@ -27,7 +27,7 @@
     },
     {
       "title": "Laver les chats",
-      "completed": false,
+      "completed": true,
       "id": 6
     },
     {

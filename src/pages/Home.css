@@ -3,7 +3,9 @@
     flex-direction: column;
     align-items: center;
     width: 80%;
-    margin: 0 auto;
+    margin-left:  auto;
+    margin-right: auto;
+    margin-bottom: 40px;
     margin-top: 40px;
 }
 
@@ -44,7 +46,7 @@
 }
 
 .text-blue {
-    color: rgb(128, 128, 207);
+    color: rgb(72, 72, 201);
 }
 
 .text-yellow {
@@ -59,4 +61,19 @@
     width : 120px;
     height: 30px;
     font-weight: bold;
+}
+
+.actions-col {
+    display: flex;
+    justify-content: end;
+  }
+
+.actions-col-head {
+    display: flex;
+    justify-content: end;
+    margin-right: 180px;
+}
+
+.title-margin {
+    margin-top: 40px;
 }

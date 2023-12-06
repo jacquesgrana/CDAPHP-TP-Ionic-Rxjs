@@ -11,6 +11,7 @@ import {
   IonGrid,
   IonRow,
   IonCol,
+  IonCard
 } from "@ionic/react";
 //import ExploreContainer from '../components/ExploreContainer';
 import "./Home.css";
@@ -22,6 +23,7 @@ import {
 } from "../services/JsonServerService";
 import { useEffect, useState } from "react";
 import { bufferCount, fromEvent } from "rxjs";
+import { Dialog } from '@capacitor/dialog';
 
 const Home: React.FC = () => {
   const [tasks, setTasks] = useState<ITask[]>([]);
@@ -75,22 +77,28 @@ const Home: React.FC = () => {
   };
 
   const deleteTaskById = (taskId: number) => {
-    if (window.confirm('Êtes-vous sûr de vouloir supprimer cette tâche ?')) {
-      const delete$ = deleteTask(taskId);
-      delete$.subscribe(() => {
-        setTasks(
-          tasks
-            .filter((task) => task.id !== taskId)
-            .sort((a: ITask, b: ITask) => {
-              if (a.completed === b.completed) {
-                return a.id - b.id;
-              }
-              return Number(a.completed) - Number(b.completed);
-            })
-        );
-      });
-    }
-   };
+    Dialog.confirm({
+      title: 'Confirmation',
+      message: 'Voulez-vous vraiment supprimer cette tâche ?',
+    }).then((result) => {
+      if (result.value) {
+        const delete$ = deleteTask(taskId);
+        delete$.subscribe(() => {
+          setTasks(
+            tasks
+              .filter((task) => task.id !== taskId)
+              .sort((a: ITask, b: ITask) => {
+                if (a.completed === b.completed) {
+                  return a.id - b.id;
+                }
+                return Number(a.completed) - Number(b.completed);
+              })
+          );
+        });
+      }
+    });
+  };
+  
 
   function handleAddTask() {
     if(newTask !== '') {
@@ -123,6 +131,7 @@ const Home: React.FC = () => {
             <IonTitle size="large">Gestion des tâches</IonTitle>
           </IonToolbar>
         </IonHeader>
+        <IonTitle size="large" className="text-center title-margin">Ajouter une tâche</IonTitle>
         <IonItem className="form-new-task">
           <IonLabel>Nouvelle tâche :</IonLabel>
           <IonInput
@@ -133,16 +142,17 @@ const Home: React.FC = () => {
             Ajouter
           </IonButton>
         </IonItem>
-        <div className="div-tasks">
+        <IonTitle size="large" className="text-center title-margin">Liste des tâches</IonTitle>
+        <IonCard className="div-tasks">
           <IonGrid className="table-tasks">
             <IonRow className="rows-tasks">
-              <IonCol size="2"><strong className="text-grey">Id</strong></IonCol>
+              <IonCol size="1"><strong className="text-grey">Id</strong></IonCol>
               <IonCol size="5"><strong className="text-grey">Titre</strong></IonCol>
-              <IonCol size="5"><strong className="text-grey">Actions</strong></IonCol>
+              <IonCol className="actions-col-head"><strong className="text-grey">Actions</strong></IonCol>
             </IonRow>
             {tasks.map((task) => (
               <IonRow className="rows-tasks" key={task.id}>
-                <IonCol size="2"><strong  className={task.completed ? "text-yellow" : "text-blue"}>{task.id}</strong></IonCol>
+                <IonCol size="1"><strong  className={task.completed ? "text-blue" : "text-orange"}>{task.id}</strong></IonCol>
                 <IonCol
                   size="5"
                   className={task.completed ? "checked" : ""}
@@ -150,7 +160,7 @@ const Home: React.FC = () => {
                 >
                   {task.title}
                 </IonCol>
-                <IonCol size="5">
+                <IonCol className="actions-col">
                   <IonButton className="btn-action"
                     color={task.completed ? "warning" : "success"}
                     onClick={() => toggleCompletion(task.id)}
@@ -167,7 +177,7 @@ const Home: React.FC = () => {
               </IonRow>
             ))}
           </IonGrid>
-        </div>
+        </IonCard>
       </IonContent>
     </IonPage>
   );
