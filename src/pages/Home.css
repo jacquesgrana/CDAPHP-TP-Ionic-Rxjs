@@ -42,7 +42,7 @@
 }
 
 .text-orange {
-    color: rgb(235, 134, 2);
+    color: rgb(185, 106, 1);
 }
 
 .text-blue {
@@ -71,7 +71,7 @@
 .actions-col-head {
     display: flex;
     justify-content: end;
-    margin-right: 170px;
+    margin-right: 290px;
 }
 
 .title-margin {

@@ -38,4 +38,17 @@ export function getTasks () {
       }).then((response) => response.json())
     );
   }
+
+  export function putTask(task: ITask) {
+    const taskId = task.id;
+    return from(
+      fetch(`${serverUrl}/${taskId}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(task),
+      }).then((response) => response.json())
+    );
+  }
   
