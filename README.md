@@ -5,6 +5,8 @@
 
 Gestion de tâches en Ionic (Typescript) avec un serveur json-server en utilisant les observables de Rxjs.
 
+![Image de l'application](./assets/app.png)
+
 ## Installation / Lancement
 
 ### installation
