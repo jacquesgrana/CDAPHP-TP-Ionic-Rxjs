@@ -55,14 +55,6 @@ const Home: React.FC = () => {
     return () => subscription.unsubscribe();
   }, [handleAddTask]);
 
-  /*
-  const toggleCompletion = (taskId: number) => {
-    setTasks(tasks.map(task => 
-      task.id === taskId ? {...task, completed: !task.completed} : task
-    ));
-  };
-*/
-
   const toggleCompletion = (taskId: number) => {
     const task = tasks.find((task) => task.id === taskId);
     if (task) {
@@ -99,28 +91,11 @@ const Home: React.FC = () => {
         );
       });
     }
-   };   
-
-  /*
-
-const handleAddTask = () => {
-  const task = { title: newTask, completed: false };
-  const add$ = addTask(task);
-  add$.subscribe((addedTask) => {
-    const newTasks = [...tasks, addedTask];
-    newTasks.sort((a: ITask, b: ITask) => {
-      if (a.completed === b.completed) {
-        return a.id - b.id;
-      }
-      return Number(a.completed) - Number(b.completed);
-    });
-    setTasks(newTasks);
-    setNewTask("");
-  });
-};*/
+   };
 
   function handleAddTask() {
-    const task = { title: newTask, completed: false };
+    if(newTask !== '') {
+      const task = { title: newTask, completed: false };
     const add$ = addTask(task);
     add$.subscribe((addedTask) => {
       const newTasks = [...tasks, addedTask];
@@ -133,6 +108,7 @@ const handleAddTask = () => {
       setTasks(newTasks);
       setNewTask("");
     });
+    }
   }
 
   return (
