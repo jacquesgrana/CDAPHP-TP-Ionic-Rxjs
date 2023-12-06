@@ -171,7 +171,7 @@ const Home: React.FC = () => {
           Ajouter une tâche
         </IonTitle>
         <IonItem className="form-new-task">
-          <IonLabel>Nouvelle tâche :</IonLabel>
+          <IonLabel>Titre de la tâche :</IonLabel>
           <IonInput
             value={newTask}
             onIonChange={(event) => setNewTask(event.detail.value!)}
