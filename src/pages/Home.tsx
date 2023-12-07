@@ -14,7 +14,6 @@ import {
   IonCard,
   IonText,
 } from "@ionic/react";
-//import ExploreContainer from '../components/ExploreContainer';
 import "./Home.css";
 import {
   getTasks,
@@ -24,8 +23,8 @@ import {
   putTask,
 } from "../services/JsonServerService";
 import { useEffect, useRef, useState } from "react";
-import { bufferCount, fromEvent } from "rxjs";
 import { Dialog } from "@capacitor/dialog";
+import { fromEvent } from "rxjs";
 
 const Home: React.FC = () => {
   const [tasks, setTasks] = useState<ITask[]>([]);
@@ -50,19 +49,19 @@ const Home: React.FC = () => {
   }, []);
 
   useEffect(() => {
-    const addButton = document.querySelector(
-      "ion-button"
-    ) as HTMLIonButtonElement;
-    const click$ = fromEvent(addButton, "click");
-    const doubleClick$ = click$.pipe(bufferCount(2));
-    const subscription = doubleClick$.subscribe(() => {
-      handleClickFormTask();
+    tasks.forEach((task) => {
+      const titleElement = document.getElementById(`task-title-${task.id}`) as HTMLElement;
+      const doubleClick$ = fromEvent(titleElement, 'dblclick');
+      const subscription = doubleClick$.subscribe(() => {
+        toggleCompletion(task.id);
+      });
+  
+      return () => subscription.unsubscribe();
     });
+  }, [tasks, toggleCompletion]);
 
-    return () => subscription.unsubscribe();
-  }, [handleClickFormTask]);
-
-  const toggleCompletion = (taskId: number) => {
+  
+  function toggleCompletion(taskId: number) {
     const task = tasks.find((task) => task.id === taskId);
     if (task) {
       const updatedTask = { ...task, completed: !task.completed };
@@ -137,7 +136,6 @@ const Home: React.FC = () => {
       }
 
       if (flagMode.current === "edit") {
-        //console.log('update');
         const task = { id: newId, title: newTask, completed: newCompleted };
         const put$ = putTask(task);
         put$.subscribe((updatedTask) => {
@@ -186,7 +184,7 @@ const Home: React.FC = () => {
           <IonButton color="primary" onClick={handleClickFormTask}>
             {flagMode.current === "add" ? "Ajouter" : "Modifier"}
           </IonButton>
-          <IonButton color="success" onClick={resetForm}>Raz</IonButton>
+          <IonButton color="warning" onClick={resetForm}>Raz</IonButton>
         </IonItem>
         <IonTitle size="large" className="text-center title-margin">
           Liste des tâches
@@ -222,7 +220,8 @@ const Home: React.FC = () => {
                   className={
                     task.completed ? "checked text-blue" : "text-orange"
                   }
-                  onDoubleClick={() => toggleCompletion(task.id)}
+                  //onDoubleClick={() => toggleCompletion(task.id)}
+                  id={`task-title-${task.id}`}
                 >
                   {task.title}
                 </IonCol>
